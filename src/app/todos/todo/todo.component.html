@@ -1,0 +1,27 @@
+<div class="container flex justify-center items-center w-full">
+  <div class="flex items-center">
+    <div class="font-bold text-lg mr-3">Todo:</div>
+    <input
+      class="shadow appearance-none border rounded w-40 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      #input
+      [formControl]="inputField"
+      placeholder="Add Todo..."
+      (keydown.enter)="add()"
+    />
+  </div>
+</div>
+<app-todos-filters
+  (update)="changeFilter($event)"
+  [filters]="filters"
+  [active]="(activeFilter$ | async) || undefined"
+>
+  ></app-todos-filters
+>
+<div class="font-bold text-lg mr-2 mt-2">Todos:</div>
+<app-todos
+  *ngFor="let todo of todos$ | async"
+  class="collection-item"
+  (deleteTodo)="onDelete($event.toString())"
+  (completeTodo)="onComplete($event)"
+  [todo]="todo"
+></app-todos>

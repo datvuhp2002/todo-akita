@@ -1,0 +1,7 @@
+<div>
+  <select [formControl]="control">
+    <option *ngFor="let filter of filters" [ngValue]="filter.value">
+      {{ filter.label }}
+    </option>
+  </select>
+</div>
